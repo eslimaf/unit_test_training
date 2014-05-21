@@ -1,11 +1,11 @@
 package br.org.cesar.unittests.api;
 
-public class ServerStub implements Server {
+public class StubServer implements Server {
 
 	private final int[] stubResult = {10,30};
 	private boolean isError = false;
 	
-	public ServerStub(boolean hasError) {
+	public StubServer(boolean hasError) {
 		isError = hasError; 
 	}
 	

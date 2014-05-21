@@ -18,7 +18,7 @@ public class MyApiConsumer {
 
 			@Override
 			public void onError(String msg) {
-
+				l.onError(msg);
 			}
 		});
 	}

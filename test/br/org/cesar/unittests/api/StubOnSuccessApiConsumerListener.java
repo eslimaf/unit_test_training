@@ -2,11 +2,11 @@ package br.org.cesar.unittests.api;
 
 import static org.junit.Assert.*;
 
-public class ApiConsumerListenerStub implements ApiConsumerListener {
+public class StubOnSuccessApiConsumerListener implements ApiConsumerListener {
 
 	private final int mExpectedResultForSuccess;
 	
-	public ApiConsumerListenerStub(int expectedResult) {
+	public StubOnSuccessApiConsumerListener(int expectedResult) {
 		mExpectedResultForSuccess = expectedResult;
 	}
 	

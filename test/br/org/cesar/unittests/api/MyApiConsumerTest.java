@@ -8,13 +8,14 @@ import org.junit.Test;
 
 public class MyApiConsumerTest {
 
-	private ApiConsumerListener stubConsumerListener;
-	private Server stubServer;
+	private MyApiConsumer api;
+	private MyApiConsumer apiDown;
 	
 	@Before
 	public void setUp() throws Exception {
-		stubConsumerListener = new ApiConsumerListenerStub(150);
-		stubServer = new ServerStub(false);
+		
+		api = new MyApiConsumer(new StubServer(false));
+		apiDown = new MyApiConsumer(new StubServer(true));
 	}
 
 	@After
@@ -23,18 +24,29 @@ public class MyApiConsumerTest {
 
 	@Test
 	public void testMyApiConsumer() {
-		
-		assertNotNull(new MyApiConsumer(stubServer));
+		assertNotNull(new MyApiConsumer(new StubServer(false)));
 	}
 
 	@Test
 	public void testSumAtoB() {
-		fail("Not yet implemented");
+		int expectedResult = 40;
+		api.sumAtoB(new StubOnSuccessApiConsumerListener(expectedResult));
 	}
 
 	@Test
 	public void testSubtractAfromB() {
-		fail("Not yet implemented");
+		int expectedResult = 20;
+		api.subtractAfromB(new StubOnSuccessApiConsumerListener(expectedResult));
+	}
+	
+	@Test
+	public void testSumAtoBWhenServerisDown(){
+		apiDown.sumAtoB(new StubOnErrorApiConsumerListener());
+	}
+	
+	@Test
+	public void testSubtractAfromBWhenServerisDown(){
+		apiDown.sumAtoB(new StubOnErrorApiConsumerListener());
 	}
 
 }
